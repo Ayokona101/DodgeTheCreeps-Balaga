@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm1bsb2kw0j4c"]
+
+[ext_resource type="Texture2D" uid="uid://ddj6cj78jssdu" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyFlyingAlt_1.png" id="1_3yqyl"]
+[ext_resource type="Script" uid="uid://wkunncg26grw" path="res://mob.gd" id="1_wujgv"]
+[ext_resource type="Texture2D" uid="uid://cvj2b8lhewxqu" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyFlyingAlt_2.png" id="2_wujgv"]
+[ext_resource type="Texture2D" uid="uid://4bm8bnrerhli" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemySwimming_1.png" id="3_hb8ge"]
+[ext_resource type="Texture2D" uid="uid://b4fu6fxdx441f" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemySwimming_2.png" id="4_e1ltt"]
+[ext_resource type="Texture2D" uid="uid://be340bhouej52" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyWalking_1.png" id="5_dxifv"]
+[ext_resource type="Texture2D" uid="uid://dydkmb7i40jtg" path="res://dodge_the_creeps_2d_assets/dodge_the_creeps_2d_assets/art/enemyWalking_2.png" id="6_pwjut"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7xaro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3yqyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wujgv")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hb8ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e1ltt")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dxifv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pwjut")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yqyl"]
+radius = 64.0
+height = 138.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Mob" type="RigidBody2D" parent="."]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_wujgv")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mob"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_7xaro")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mob"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3yqyl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Mob"]
